@@ -51,24 +51,7 @@ public class CalculatorLv3 {
         return result;
     }
 
-    public double getHistory(int index) {
-        return history.get(index);
-    }
-
-    public void setHistory(int index, double newValue) {
-        history.set(index, newValue);
-    }
-
-    public String showHistory() {
-        return history.toString();
-    }
-
-    public void removeLatestHistory() {
-        history.removeFirst();
-        System.out.println("첫번째 기록이 성공적으로 제거되었습니다.");
-        System.out.println("지금까지의 기록: " + history.toString());
-    }
-
+    // 사용자 입력값이 올바른 입력값인지 확인하는 검사(Parser) 객체
     public static class Parser {
         public static boolean isNumber(String input) throws WrongNumberInputException {
             try {
@@ -79,6 +62,7 @@ public class CalculatorLv3 {
             }
         }
 
+        // 숫자를 String 타입으로 입력 받아 모든 숫자 타입(Integer, Double, Long)에 대처할 수 있도록 설계
         public static <T extends Number> T parseNumber(String input) throws WrongNumberInputException {
             try {
                 return (T) Integer.valueOf(input);
@@ -108,5 +92,25 @@ public class CalculatorLv3 {
                 throw new DivisionByZeroException();
             }
         }
+    }
+
+    // ===============
+    // History 조작 메서드들
+    public double getHistory(int index) {
+        return history.get(index);
+    }
+
+    public void setHistory(int index, double newValue) {
+        history.set(index, newValue);
+    }
+
+    public String showHistory() {
+        return history.toString();
+    }
+
+    public void removeLatestHistory() {
+        history.removeFirst();
+        System.out.println("첫번째 기록이 성공적으로 제거되었습니다.");
+        System.out.println("지금까지의 기록: " + history.toString());
     }
 }
