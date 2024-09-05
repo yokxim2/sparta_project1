@@ -41,6 +41,8 @@ public class CalculatorLv3 {
             throw new WrongNumberInputException();
         }
 
+        setOperator(operator);
+
         Parser.checkDivisionByZero(secondNum, operator);
 
         Double result = operation.operate(Double.parseDouble(firstNum), Double.parseDouble(secondNum));
@@ -77,20 +79,6 @@ public class CalculatorLv3 {
             }
         }
 
-        public static boolean isOperator(String op) throws WrongOperatorInputException {
-            if (OperatorType.contains(op)) {
-                return true;
-            } else {
-                throw new WrongOperatorInputException();
-            }
-        }
-
-        public static void checkDivisionByZero(String num, String op) throws DivisionByZeroException {
-            if (op.equals("/") && Double.parseDouble(num) == 0) {
-                throw new DivisionByZeroException();
-            }
-        }
-
         public static <T extends Number> T parseNumber(String input) throws WrongNumberInputException {
             try {
                 return (T) Integer.valueOf(input);
@@ -104,6 +92,20 @@ public class CalculatorLv3 {
                         throw new WrongNumberInputException();
                     }
                 }
+            }
+        }
+
+        public static boolean isOperator(String op) throws WrongOperatorInputException {
+            if (OperatorType.contains(op)) {
+                return true;
+            } else {
+                throw new WrongOperatorInputException();
+            }
+        }
+
+        public static void checkDivisionByZero(String num, String op) throws DivisionByZeroException {
+            if (op.equals("/") && Double.parseDouble(num) == 0) {
+                throw new DivisionByZeroException();
             }
         }
     }

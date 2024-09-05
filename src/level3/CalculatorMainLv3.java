@@ -29,8 +29,6 @@ public class CalculatorMainLv3 {
                 System.out.print("연산자를 입력하세요 ('+', '-', '*', '/'): ");
                 String operator = scanner.nextLine();
 
-                calculator.setOperator(operator);
-
                 System.out.println("결과: " + calculator.calculate(firstNum, secondNum, operator));
             } catch (BadInputException e) {
                 System.out.println(e.getMessage());
