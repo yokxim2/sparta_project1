@@ -16,23 +16,20 @@ public class CalculatorLv3 {
     private List<Double> history = new ArrayList<>();
 
     public void setOperator(String op) throws WrongOperatorInputException {
-        if (Parser.isOperator(op)) {
-            switch (op) {
-                case "+":
-                    this.operation = new AddOperation();
-                    break;
-                case "-":
-                    this.operation = new SubtractOperation();
-                    break;
-                case "*":
-                    this.operation = new MultiplyOperation();
-                    break;
-                case "/":
-                    this.operation = new DivideOperation();
-                    break;
-                default:
-                    throw new WrongOperatorInputException();
-            }
+        OperatorType type = Parser.parseOperator(op);
+        switch (type) {
+            case OperatorType.ADDITION:
+                this.operation = new AddOperation();
+                break;
+            case OperatorType.SUBTRACTION:
+                this.operation = new SubtractOperation();
+                break;
+            case OperatorType.MULTIPLICATION:
+                this.operation = new MultiplyOperation();
+                break;
+            case OperatorType.DIVISION:
+                this.operation = new DivideOperation();
+                break;
         }
     }
 
@@ -79,9 +76,9 @@ public class CalculatorLv3 {
             }
         }
 
-        public static boolean isOperator(String op) throws WrongOperatorInputException {
+        public static OperatorType parseOperator(String op) throws WrongOperatorInputException {
             if (OperatorType.contains(op)) {
-                return true;
+                return OperatorType.valueOf(op);
             } else {
                 throw new WrongOperatorInputException();
             }
