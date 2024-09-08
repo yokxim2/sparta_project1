@@ -16,12 +16,12 @@ public enum OperatorType {
         return symbol;
     }
 
-    public static boolean contains(String input) {
+    public static OperatorType contains(String input) {
         for (OperatorType operator : OperatorType.values()) {
             if (operator.getSymbol().equals(input)) {
-                return true;
+                return operator;
             }
         }
-        return false;
+        return null;
     }
 }

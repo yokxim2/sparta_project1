@@ -12,87 +12,28 @@ import java.util.List;
 public class CalculatorLv3 {
 
     private AbstractOperation operation;
+    private Parser parser = new Parser();
+
     // 연산 결과 저장
     private List<Double> history = new ArrayList<>();
 
-    public void setOperator(String op) throws WrongOperatorInputException {
-        OperatorType type = Parser.parseOperator(op);
-        switch (type) {
-            case OperatorType.ADDITION:
-                this.operation = new AddOperation();
-                break;
-            case OperatorType.SUBTRACTION:
-                this.operation = new SubtractOperation();
-                break;
-            case OperatorType.MULTIPLICATION:
-                this.operation = new MultiplyOperation();
-                break;
-            case OperatorType.DIVISION:
-                this.operation = new DivideOperation();
-                break;
-        }
-    }
-
     public double calculate(String firstNum, String secondNum, String operator) throws BadInputException {
-        if (!Parser.isNumber(firstNum) || !Parser.isNumber(secondNum)) {
-            throw new WrongNumberInputException();
-        }
+        double num1 = parser.parseNumber(firstNum);
+        double num2 = parser.parseNumber(secondNum);
+        operation = parser.parseOperator(operator);
 
-        setOperator(operator);
-
-        Parser.checkDivisionByZero(secondNum, operator);
-
-        Double result = operation.operate(Double.parseDouble(firstNum), Double.parseDouble(secondNum));
-        history.add(result);
+        double result = operation.operate(num1, num2);
+        saveHistory(result);
 
         return result;
     }
 
-    // 사용자 입력값이 올바른 입력값인지 확인하는 검사(Parser) 객체
-    public static class Parser {
-        public static boolean isNumber(String input) throws WrongNumberInputException {
-            try {
-                parseNumber(input);
-                return true;
-            } catch (WrongNumberInputException e) {
-                throw e;
-            }
-        }
-
-        // 숫자를 String 타입으로 입력 받아 모든 숫자 타입(Integer, Double, Long)에 대처할 수 있도록 설계
-        public static <T extends Number> T parseNumber(String input) throws WrongNumberInputException {
-            try {
-                return (T) Integer.valueOf(input);
-            } catch (NumberFormatException e1) {
-                try {
-                    return (T) Long.valueOf(input);
-                } catch (NumberFormatException e2) {
-                    try {
-                        return (T) Double.valueOf(input);
-                    } catch (NumberFormatException e3) {
-                        throw new WrongNumberInputException();
-                    }
-                }
-            }
-        }
-
-        public static OperatorType parseOperator(String op) throws WrongOperatorInputException {
-            if (OperatorType.contains(op)) {
-                return OperatorType.valueOf(op);
-            } else {
-                throw new WrongOperatorInputException();
-            }
-        }
-
-        public static void checkDivisionByZero(String num, String op) throws DivisionByZeroException {
-            if (op.equals("/") && Double.parseDouble(num) == 0) {
-                throw new DivisionByZeroException();
-            }
-        }
-    }
-
     // ===============
     // History 조작 메서드들
+    public void saveHistory(double result) {
+        history.add(result);
+    }
+
     public double getHistory(int index) {
         return history.get(index);
     }
