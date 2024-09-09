@@ -34,7 +34,7 @@ public class CalculatorMainLv3 {
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("지금까지의 검색 기록: " + calculator.showHistory());
+            System.out.println("지금까지의 검색 기록: " + calculator.showResult());
 
             System.out.println("계산을 그만하시려면 exit을 입력해주세요.");
             System.out.println("계속하고 싶다면 아무 키나 누르세요: ");
