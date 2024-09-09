@@ -29,7 +29,7 @@ public class CalculatorLv3 {
     }
 
     // ===============
-    // History 조작 메서드들
+    // calculationResult 조작 메서드들
     public void saveResult(double result) {
         calculationResult.add(result);
     }

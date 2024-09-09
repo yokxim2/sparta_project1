@@ -4,7 +4,7 @@ import level3.operation.*;
 import level3.error.WrongNumberInputException;
 import level3.error.WrongOperatorInputException;
 
-// 사용자 입력값이 올바른 입력값인지 확인하는 검사(Parser) 객체
+// 사용자 입력값이 올바른 입력값인지 확인하는 논리(Parser) 객체
 public class Parser {
     public double parseNumber(String input) throws WrongNumberInputException {
         try {
