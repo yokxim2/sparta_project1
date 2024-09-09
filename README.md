@@ -13,7 +13,7 @@ Lv 2
 
 - Calculator 클래스 생성
   1. 연산을 수행하는 메서드 구현
-  2. 연산 결과를 저장하는 컬렉션 타입 변수 생성 [History라고 하자.]
+  2. 연산 결과를 저장하는 컬렉션 타입 변수 생성
   3. Main에서 History에 직접 접근해 필드를 수정하지 못하게 변경, 간접적으로 접근할 수 있도록 Getter와 Setter Calculator 내부에 생성하기
   4. History에 저장된 데이터를 삭제하는 메서드 생성
 
@@ -28,4 +28,8 @@ Lv 3
 - 예외 처리
 
 Full class diagram
-![Class diagram](https://github.com/user-attachments/assets/c061fb76-9166-4cf0-91a6-49784785b5f6)
+
+![Sparta_project1_class_diagram](https://github.com/user-attachments/assets/aeb36238-f663-4b83-8212-3212ab67a43d)
+
+TroubleShooting TIL Link:
+https://ultra-comb-ede.notion.site/09-04-24-34c19f91279b45288be488c8469a1c3a?pvs=4
